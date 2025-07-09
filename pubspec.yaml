@@ -1,0 +1,45 @@
+name: tugas1
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  firebase_core: ^2.32.0
+  firebase_auth: ^4.20.0
+  url_launcher: ^6.2.6
+  flutter_map: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - images/lake.jpg
+    - images/borobudur.jpg
+    - images/gunung.jpg
+    - images/prambanan.jpg
+    - images/parangtritis.jpg
+    - images/keraton.jpg
+    - images/besakih.jpg
+    - images/samosir.jpg
+    - images/telagawarna.jpg
+    - images/user.jpg
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "images/icon4.png"
+
+
+

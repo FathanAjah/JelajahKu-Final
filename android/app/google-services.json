@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "603638923079",
+    "project_id": "jelajah-firebase-49527",
+    "storage_bucket": "jelajah-firebase-49527.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603638923079:android:4293bbde199e358fa39662",
+        "android_client_info": {
+          "package_name": "com.example.jelajahku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603638923079-rafe7ef3g9rd6kmp56hb16d54r5b4loa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIlftb0yrNKz1VjsHihPPoTA6i4vIY5Ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603638923079-rafe7ef3g9rd6kmp56hb16d54r5b4loa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603638923079-031ej09a0d4dgeou9cq2ufhe0rgila7k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.jelajahku"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603638923079:android:7f59439a4731b6baa39662",
+        "android_client_info": {
+          "package_name": "com.example.tugas1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603638923079-rafe7ef3g9rd6kmp56hb16d54r5b4loa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIlftb0yrNKz1VjsHihPPoTA6i4vIY5Ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603638923079-rafe7ef3g9rd6kmp56hb16d54r5b4loa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603638923079-031ej09a0d4dgeou9cq2ufhe0rgila7k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.jelajahku"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
