@@ -7,7 +7,6 @@ import 'firebase_options.dart';
 import 'home.dart';
 import 'login.dart';
 
-// Hapus baris ini: import 'auth_gate.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
