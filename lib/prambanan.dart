@@ -1,8 +1,8 @@
 //prambanan.dart
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart'; // Ditambahkan untuk fungsionalitas peta
+import 'package:url_launcher/url_launcher.dart';
 
-// Stateful widget Karena menangani interaksi (like/dislike) yang berubah seiring waktu
+// Stateful widget
 class PrambananPage extends StatefulWidget {
   const PrambananPage({super.key});
 
@@ -11,13 +11,11 @@ class PrambananPage extends StatefulWidget {
 }
 
 class _PrambananPageState extends State<PrambananPage> {
-  // Variabel untuk menyimpan status like/dislike
   int likeCount = 155;
   int dislikeCount = 12;
   bool isLiked = false;
   bool isDisliked = false;
 
-  // Fungsi untuk toggle tombol Like
   void toggleLike() {
     setState(() {
       if (isLiked) {
@@ -34,7 +32,6 @@ class _PrambananPageState extends State<PrambananPage> {
     });
   }
 
-  // Fungsi untuk toggle tombol Dislike
   void toggleDislike() {
     setState(() {
       if (isDisliked) {
@@ -51,13 +48,9 @@ class _PrambananPageState extends State<PrambananPage> {
     });
   }
 
-  // --- FUNGSI BARU UNTUK MEMBUKA PETA ---
-  // Fungsi ini akan membuka aplikasi peta eksternal (Google Maps, Apple Maps, dll)
   Future<void> _launchMapsUrl() async {
-    // Koordinat untuk Candi Prambanan
     const double latitude = -7.7520;
     const double longitude = 110.4915;
-    // URL universal untuk membuka peta di koordinat tertentu
     final Uri mapsUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$latitude,$longitude');
 
     if (await canLaunchUrl(mapsUrl)) {
@@ -75,7 +68,7 @@ class _PrambananPageState extends State<PrambananPage> {
   // Widget utama yang ditampilkan ke layar
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // Dihapus MaterialApp dan home agar bisa navigasi dari halaman lain
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -90,12 +83,11 @@ class _PrambananPageState extends State<PrambananPage> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Gambar bakcground
+
           Image.asset(
             'images/prambanan.jpg',
             fit: BoxFit.cover,
           ),
-          // Overlay hitam transparan
           Container(color: Colors.black.withOpacity(0.7)),
           SafeArea(
             child: SingleChildScrollView(
@@ -105,7 +97,6 @@ class _PrambananPageState extends State<PrambananPage> {
                   // Widget gambar utama
                   const ImageSection(image: 'images/prambanan.jpg'),
                   const SizedBox(height: 16),
-                  // Widget kartu informasi (stateless tapi menerima data dari Stateful di atas)
                   InfoCard(
                     likeCount: likeCount,
                     dislikeCount: dislikeCount,
@@ -139,7 +130,6 @@ class ImageSection extends StatelessWidget {
   }
 }
 
-// Stateless Widget untuk menampilkan info lokasi, tombol like/dislike, deskripsi, dan review
 class InfoCard extends StatelessWidget {
   final int likeCount;
   final int dislikeCount;
@@ -147,7 +137,7 @@ class InfoCard extends StatelessWidget {
   final bool isDisliked;
   final VoidCallback onLikePressed;
   final VoidCallback onDislikePressed;
-  final VoidCallback onMapPressed; // Ditambahkan parameter untuk tombol peta
+  final VoidCallback onMapPressed;
 
   const InfoCard({
     super.key,
@@ -157,7 +147,7 @@ class InfoCard extends StatelessWidget {
     required this.isDisliked,
     required this.onLikePressed,
     required this.onDislikePressed,
-    required this.onMapPressed, // Diperlukan parameter untuk tombol peta
+    required this.onMapPressed,
   });
 
   @override
@@ -171,13 +161,11 @@ class InfoCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Judul lokasi
             const TitleSection(
               name: 'Prambanan Temple',
               location: 'Yogyakarta, DIY',
             ),
             const SizedBox(height: 16),
-            // Tombol Map, Like, & Dislike
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -185,7 +173,7 @@ class InfoCard extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.map_outlined, color: Colors.grey),
-                      onPressed: onMapPressed, // Menggunakan fungsi dari parameter
+                      onPressed: onMapPressed,
                     ),
                     const Text('Map'),
                   ],
@@ -217,7 +205,6 @@ class InfoCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            // Deskripsi tempat wisata
             const TextSection(
               description:
               'Candi Prambanan adalah kompleks candi Hindu terbesar di Indonesia '
@@ -229,7 +216,6 @@ class InfoCard extends StatelessWidget {
                   'merupakan salah satu Situs Warisan Dunia UNESCO.',
             ),
             const SizedBox(height: 24),
-            // Review  user
             const ReviewSection(),
           ],
         ),
@@ -238,7 +224,6 @@ class InfoCard extends StatelessWidget {
   }
 }
 
-// Stateless Widget Menampilkan nama lokasi dan rating
 class TitleSection extends StatelessWidget {
   const TitleSection({super.key, required this.name, required this.location});
   final String name;
@@ -267,7 +252,7 @@ class TitleSection extends StatelessWidget {
   }
 }
 
-// Stateless Widget Menampilkan deskripsi wisata
+// Stateless Widget
 class TextSection extends StatelessWidget {
   const TextSection({super.key, required this.description});
   final String description;
@@ -282,7 +267,7 @@ class TextSection extends StatelessWidget {
   }
 }
 
-// Stateless Widget Menampilkan daftar review pengguna
+// Stateless Widget
 class ReviewSection extends StatelessWidget {
   const ReviewSection({super.key});
 
@@ -304,7 +289,6 @@ class ReviewSection extends StatelessWidget {
     );
   }
 
-  // Widget kecil untuk membuat review user
   Widget _buildReview(String name, String review, double rating, String imageUrl) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),

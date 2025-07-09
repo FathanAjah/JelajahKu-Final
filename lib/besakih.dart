@@ -111,7 +111,6 @@ class _BesakihPageState extends State<BesakihPage> {
   }
 }
 
-// Widget ImageSection tidak diubah
 class ImageSection extends StatelessWidget {
   const ImageSection({super.key, required this.image});
   final String image;

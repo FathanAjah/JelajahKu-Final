@@ -1,19 +1,19 @@
+// main.dart
+
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart'; // 1. Impor Firebase Core
-import 'firebase_options.dart'; // 2. Impor file konfigurasi
-import 'login.dart'; // Ganti dengan halaman awal Anda
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'firebase_options.dart';
+import 'home.dart';
+import 'login.dart';
 
-// 3. Ubah fungsi main menjadi async
+// Hapus baris ini: import 'auth_gate.dart';
+
 Future<void> main() async {
-  // 4. Pastikan semua widget binding sudah siap
   WidgetsFlutterBinding.ensureInitialized();
-
-  // 5. Inisialisasi Firebase dan TUNGGU sampai selesai
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  // 6. Jalankan aplikasi Anda SETELAH Firebase siap
   runApp(const MyApp());
 }
 
@@ -28,7 +28,28 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const LoginPage(), // Halaman awal Anda
+      home: const AuthGate(),
+    );
+  }
+}
+
+class AuthGate extends StatelessWidget {
+  const AuthGate({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        // Jika user sudah login, tampilkan HomePage
+        if (snapshot.hasData) {
+          return const HomePage();
+        }
+        // Jika belum, tampilkan LoginPage
+        else {
+          return const LoginPage();
+        }
+      },
     );
   }
 }

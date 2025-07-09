@@ -47,12 +47,9 @@ class _BorobudurPageState extends State<BorobudurPage> {
     });
   }
 
-  // --- FUNGSI INI TELAH DIPERBAIKI ---
-  // Fungsi ini akan membuka aplikasi peta eksternal (Google Maps, Apple Maps, dll)
   Future<void> _launchMapsUrl() async {
     const double latitude = -7.6079;
     const double longitude = 110.2038;
-    // URL yang benar untuk membuka peta di koordinat tertentu
     final Uri googleMapsUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$latitude,$longitude');
 
     if (await canLaunchUrl(googleMapsUrl)) {
@@ -93,7 +90,6 @@ class _BorobudurPageState extends State<BorobudurPage> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  // GAMBAR UTAMA TETAP SEPERTI SEMULA
                   const ImageSection(image: 'images/borobudur.jpg'),
                   const SizedBox(height: 16),
                   InfoCard(
@@ -103,7 +99,7 @@ class _BorobudurPageState extends State<BorobudurPage> {
                     isDisliked: isDisliked,
                     onLikePressed: toggleLike,
                     onDislikePressed: toggleDislike,
-                    onMapPressed: _launchMapsUrl, // Memanggil fungsi yang sudah diperbaiki
+                    onMapPressed: _launchMapsUrl,
                   ),
                 ],
               ),
@@ -115,7 +111,7 @@ class _BorobudurPageState extends State<BorobudurPage> {
   }
 }
 
-// Widget ImageSection tidak diubah
+// Widget ImageSection
 class ImageSection extends StatelessWidget {
   const ImageSection({super.key, required this.image});
   final String image;

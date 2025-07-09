@@ -1,8 +1,7 @@
 //parangtritis.dart
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart'; // Ditambahkan untuk fungsionalitas peta
+import 'package:url_launcher/url_launcher.dart';
 
-// Stateful widget karena membutuhkan pengelolaan state (like/dislike)
 class ParangtritisPage extends StatefulWidget {
   const ParangtritisPage({super.key});
 
@@ -10,14 +9,12 @@ class ParangtritisPage extends StatefulWidget {
   State<ParangtritisPage> createState() => _ParangtritisPageState();
 }
 
-// State dari ParangtritisPage
 class _ParangtritisPageState extends State<ParangtritisPage> {
   int likeCount = 230;
   int dislikeCount = 8;
   bool isLiked = false;
   bool isDisliked = false;
 
-  // Fungsi untuk toggle like
   void toggleLike() {
     setState(() {
       if (isLiked) {
@@ -34,7 +31,6 @@ class _ParangtritisPageState extends State<ParangtritisPage> {
     });
   }
 
-  // Fungsi untuk toggle dislike
   void toggleDislike() {
     setState(() {
       if (isDisliked) {
@@ -51,10 +47,7 @@ class _ParangtritisPageState extends State<ParangtritisPage> {
     });
   }
 
-  // --- FUNGSI BARU UNTUK MEMBUKA PETA ---
-  // Fungsi ini akan membuka aplikasi peta eksternal
   Future<void> _launchMapsUrl() async {
-    // Koordinat untuk Pantai Parangtritis
     const double latitude = -8.0284;
     const double longitude = 110.3291;
     final Uri mapsUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$latitude,$longitude');
@@ -73,7 +66,7 @@ class _ParangtritisPageState extends State<ParangtritisPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // Dihapus MaterialApp dan home agar bisa navigasi dari halaman lain
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -93,7 +86,6 @@ class _ParangtritisPageState extends State<ParangtritisPage> {
             'images/parangtritis.jpg',
             fit: BoxFit.cover,
           ),
-          // Lapisan hitam transparan di atas gambar
           Container(color: Colors.black.withOpacity(0.7)),
           SafeArea(
             child: SingleChildScrollView(
@@ -103,7 +95,6 @@ class _ParangtritisPageState extends State<ParangtritisPage> {
                   // Gambar utama pantai
                   const ImageSection(image: 'images/parangtritis.jpg'),
                   const SizedBox(height: 16),
-                  // Card berisi info, tombol like/dislike, deskripsi, review
                   InfoCard(
                     likeCount: likeCount,
                     dislikeCount: dislikeCount,
@@ -123,7 +114,6 @@ class _ParangtritisPageState extends State<ParangtritisPage> {
   }
 }
 
-// Stateless Widget untuk menampilkan gambar utama destinasi
 class ImageSection extends StatelessWidget {
   const ImageSection({super.key, required this.image});
   final String image;
@@ -137,7 +127,7 @@ class ImageSection extends StatelessWidget {
   }
 }
 
-//Stateless Widget untuk menampilkan card dengan informasi destinasi, tombol like/dislike, deskripsi dan review
+
 class InfoCard extends StatelessWidget {
   final int likeCount;
   final int dislikeCount;
@@ -145,7 +135,7 @@ class InfoCard extends StatelessWidget {
   final bool isDisliked;
   final VoidCallback onLikePressed;
   final VoidCallback onDislikePressed;
-  final VoidCallback onMapPressed; // Ditambahkan parameter untuk tombol peta
+  final VoidCallback onMapPressed;
 
   const InfoCard({
     super.key,
@@ -155,7 +145,7 @@ class InfoCard extends StatelessWidget {
     required this.isDisliked,
     required this.onLikePressed,
     required this.onDislikePressed,
-    required this.onMapPressed, // Diperlukan parameter untuk tombol peta
+    required this.onMapPressed,
   });
 
   @override
@@ -174,8 +164,6 @@ class InfoCard extends StatelessWidget {
               location: 'Yogyakarta, DIY',
             ),
             const SizedBox(height: 16),
-
-            // Tombol Map, Like, & Dislike
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -183,7 +171,7 @@ class InfoCard extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.map_outlined, color: Colors.grey),
-                      onPressed: onMapPressed, // Menggunakan fungsi dari parameter
+                      onPressed: onMapPressed,
                     ),
                     const Text('Map'),
                   ],
@@ -216,8 +204,6 @@ class InfoCard extends StatelessWidget {
             ),
 
             const SizedBox(height: 16),
-
-            // Deskripsi destinasi
             const TextSection(
               description:
               'Parangtritis adalah sebuah pantai yang terkenal di Yogyakarta, Indonesia, '
@@ -229,8 +215,6 @@ class InfoCard extends StatelessWidget {
             ),
 
             const SizedBox(height: 24),
-
-            // Review dari user
             const ReviewSection(),
           ],
         ),
@@ -239,7 +223,7 @@ class InfoCard extends StatelessWidget {
   }
 }
 
-//Stateless Widget menampilkan nama dan lokasi destinasi
+//Stateless Widget
 class TitleSection extends StatelessWidget {
   const TitleSection({super.key, required this.name, required this.location});
   final String name;
@@ -268,7 +252,7 @@ class TitleSection extends StatelessWidget {
   }
 }
 
-//Stateless Widget menampilkan deskripsi destinasi
+//Stateless Widget
 class TextSection extends StatelessWidget {
   const TextSection({super.key, required this.description});
   final String description;
@@ -283,7 +267,7 @@ class TextSection extends StatelessWidget {
   }
 }
 
-// Stateless Widget menampilkan review dari user
+// Stateless Widget
 class ReviewSection extends StatelessWidget {
   const ReviewSection({super.key});
 
@@ -311,7 +295,6 @@ class ReviewSection extends StatelessWidget {
     );
   }
 
-  // Fungsi pembantu untuk membuat review dari user
   Widget _buildReview(String name, String review, double rating, String imageUrl) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),

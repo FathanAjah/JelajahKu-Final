@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'login.dart'; // Import login page untuk navigasi setelah berhasil
+import 'login.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -27,18 +27,16 @@ class _RegisterPageState extends State<RegisterPage> {
       });
 
       try {
-        // Buat pengguna baru dengan email dan password
         UserCredential userCredential =
         await _auth.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
 
-        // Update nama tampilan (username) pengguna
         if (userCredential.user != null) {
           await userCredential.user!
               .updateDisplayName(_usernameController.text.trim());
-          await userCredential.user!.reload(); // Muat ulang data pengguna
+          await userCredential.user!.reload();
         }
 
         if (mounted) {
@@ -48,7 +46,6 @@ class _RegisterPageState extends State<RegisterPage> {
               backgroundColor: Colors.green,
             ),
           );
-          // Navigasi ke halaman login setelah berhasil
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => const LoginPage()),
@@ -99,7 +96,6 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Gunakan gambar yang sama dengan halaman login
           Image.asset(
             'images/gunung.jpg',
             fit: BoxFit.cover,
